@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RPS</title>
+    <style>
+        .hand {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+            width: 200px;
+            border-radius: 50%;
+            font-size: 8rem;
+            border: 6px solid rgb(179, 4, 4);
+            transform: rotate(-90deg) scale(1);
+            cursor: pointer;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hand" style="color: red;" onclick="this.style.color='blue'">✊</div>
+    <div class="hand" style="color: green;" onclick="this.style.color='red'">✋</div>
+    <div class="hand" style="color: blue;" onclick="this.style.color='green'">✌</div>
+</body>
+
+</html>

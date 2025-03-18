@@ -1,0 +1,11 @@
+print(chr(9824)) # ♠
+print(chr(9827)) # ♣
+print(chr(9829)) # ♥
+print(chr(9830)) # ♦
+print(chr(9828)) # ♤
+print(chr(9831)) # ♧
+print(chr(9825)) # ♡
+print(chr(9826)) # ♢
+print(chr(0x270A)) # ✊
+print(chr(0x270B)) # ✋
+print(chr(0x270C)) # ✌

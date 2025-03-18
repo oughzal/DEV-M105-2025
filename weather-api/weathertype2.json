@@ -1,0 +1,171 @@
+[
+    {
+        "code": 0,
+        "description": "Clear sky",
+        "iconRes": "sunny",
+        "DescriptionFr": "Ciel dégagé"
+    },
+    {
+        "code": 1,
+        "description": "Mainly clear",
+        "iconRes": "cloudy",
+        "DescriptionFr": "Principalement clair"
+    },
+    {
+        "code": 2,
+        "description": "Partly cloudy",
+        "iconRes": "cloudy",
+        "DescriptionFr": "Partiellement nuageux"
+    },
+    {
+        "code": 3,
+        "description": "Overcast",
+        "iconRes": "Overcast",
+        "DescriptionFr": "Couvert"
+    },
+    {
+        "code": 45,
+        "description": "Foggy",
+        "iconRes": "Overcast",
+        "DescriptionFr": "Brumeux"
+    },
+    {
+        "code": 48,
+        "description": "Depositing rime fog",
+        "iconRes": "Overcast",
+        "DescriptionFr": "Brouillard givrant"
+    },
+    {
+        "code": 51,
+        "description": "Light drizzle",
+        "iconRes": "rainshower",
+        "DescriptionFr": "Bruine légère"
+    },
+    {
+        "code": 53,
+        "description": "Moderate drizzle",
+        "iconRes": "rainshower",
+        "DescriptionFr": "Bruine modérée"
+    },
+    {
+        "code": 55,
+        "description": "Dense drizzle",
+        "iconRes": "rainshower",
+        "DescriptionFr": "Bruine dense"
+    },
+    {
+        "code": 56,
+        "description": "Slight freezing drizzle",
+        "iconRes": "snowyrainy",
+        "DescriptionFr": "Bruine verglaçante légère"
+    },
+    {
+        "code": 57,
+        "description": "Dense freezing drizzle",
+        "iconRes": "snowyrainy",
+        "DescriptionFr": "Bruine verglaçante dense"
+    },
+    {
+        "code": 61,
+        "description": "Slight rain",
+        "iconRes": "rainy",
+        "DescriptionFr": "Pluie légère"
+    },
+    {
+        "code": 63,
+        "description": "Rainy",
+        "iconRes": "rainy",
+        "DescriptionFr": "Pluvieux"
+    },
+    {
+        "code": 65,
+        "description": "Heavy rain",
+        "iconRes": "rainy",
+        "DescriptionFr": "Pluie forte"
+    },
+    {
+        "code": 66,
+        "description": "Light freezing drizzle",
+        "iconRes": "snowyrainy",
+        "DescriptionFr": "Bruine verglaçante légère"
+    },
+    {
+        "code": 67,
+        "description": "Heavy freezing rain",
+        "iconRes": "snowyrainy",
+        "DescriptionFr": "Pluie verglaçante forte"
+    },
+    {
+        "code": 71,
+        "description": "Slight snow fall",
+        "iconRes": "snowy",
+        "DescriptionFr": "Chute de neige légère"
+    },
+    {
+        "code": 73,
+        "description": "Moderate snow fall",
+        "iconRes": "heavysnow",
+        "DescriptionFr": "Chute de neige modérée"
+    },
+    {
+        "code": 75,
+        "description": "Heavy snow fall",
+        "iconRes": "heavysnow",
+        "DescriptionFr": "Chute de neige forte"
+    },
+    {
+        "code": 77,
+        "description": "Snow grains",
+        "iconRes": "heavysnow",
+        "DescriptionFr": "Grains de neige"
+    },
+    {
+        "code": 80,
+        "description": "Slight rain showers",
+        "iconRes": "rainshower",
+        "DescriptionFr": "Averses de pluie légères"
+    },
+    {
+        "code": 81,
+        "description": "Moderate rain showers",
+        "iconRes": "rainshower",
+        "DescriptionFr": "Averses de pluie modérées"
+    },
+    {
+        "code": 82,
+        "description": "Violent rain showers",
+        "iconRes": "rainshower",
+        "DescriptionFr": "Averses de pluie violentes"
+    },
+    {
+        "code": 85,
+        "description": "Light snow showers",
+        "iconRes": "snowy",
+        "DescriptionFr": "Averses de neige légères"
+    },
+    {
+        "code": 86,
+        "description": "Heavy snow showers",
+        "iconRes": "snowy",
+        "DescriptionFr": "Averses de neige fortes"
+    },
+    {
+        "code": 95,
+        "description": "Moderate thunderstorm",
+        "iconRes": "thunder",
+        "DescriptionFr": "Orage modéré"
+    },
+    {
+        "code": 96,
+        "description": "Thunderstorm with slight hail",
+        "iconRes": "thunder",
+        "DescriptionFr": "Orage avec grêle légère"
+    },
+    {
+        "code": 99,
+        "description": "Thunderstorm with heavy hail",
+        "iconRes": "thunder",
+        "DescriptionFr": "Orage avec grêle forte"
+    }
+]
+

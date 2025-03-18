@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Adan</title>
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
+    <script src="../assets/bootstrap.min.js"></script>
+</head>
+<body>
+    
+    <script defer>
+        async function getPrayerTimes() {
+            var html = '';
+            const currentYear = new Date().getFullYear();
+            const month = new Date().getMonth()+1;
+            const latitude = 32.948384;
+            const longitude = -5.6664149;
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(position => {
+                    const latitude = position.coords.latitude;
+                    const longitude = position.coords.longitude;
+                    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                }, error => {
+                    console.error('Error getting location:', error);
+                });
+            } else {
+                console.error('Geolocation is not supported by this browser.');
+            }
+                const response = await fetch(`http://localhost/api/adanApi.php?year=${currentYear}&month=${month}?latitude=${latitude}&longitude=${longitude}`);
+                const data = await response.json();
+                const prayerTimes = data;
+                prayerTimes.forEach(prayerTime => {
+                    html += `<tr>
+                        <td>${prayerTime.date}</td>
+                        <td>${prayerTime.hijri}</td>
+                        <td>${prayerTime.fajr}</td>
+                        <td>${prayerTime.sobeh}</td>
+                        <td>${prayerTime.dhuhr}</td>
+                        <td>${prayerTime.asr}</td>
+                        <td>${prayerTime.maghrib}</td>
+                        <td>${prayerTime.isha}</td>
+                    </tr>`;
+                });
+            html+="</table>";
+            document.getElementById("prayer-times").innerHTML = html;
+        }
+
+       getPrayerTimes();
+
+
+    </script>
+    <div class="container">
+        <h1 class="text-center">أوقات الصلاة</h1>
+         <table class="table">
+        <thead class="bg-primary text-white">
+            <th>الملادي</th>
+            <th>الهجري</th>
+            <th>الفجر</th>
+            <th>الشروق</th>
+            <th>الظهر</th>
+            <th>العصر</th>
+            <th>المغرب</th>
+            <th>العشاء</th>
+        </thead>
+        <tbody id="prayer-times">
+        
+    </table>
+    </div>
+   
+</body>
+</html>
