@@ -10,27 +10,42 @@
 <body>
     
     <script defer>
-        async function getPrayerTimes() {
-            var html = '';
-            const currentYear = new Date().getFullYear();
-            const month = new Date().getMonth()+1;
-            const latitude = 32.948384;
-            const longitude = -5.6664149;
+            var latitude = 32.948384;
+            var longitude = -5.6664149;
             if (navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition(position => {
-                    const latitude = position.coords.latitude;
-                    const longitude = position.coords.longitude;
-                    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
+                    latitude = position.coords.latitude;
+                    longitude = position.coords.longitude;
+                document.getElementById("latitude").value = latitude;
+                document.getElementById("longitude").value = longitude;
                 }, error => {
                     console.error('Error getting location:', error);
                 });
             } else {
                 console.error('Geolocation is not supported by this browser.');
             }
+
+        function search() {
+            latitude = document.getElementById("latitude").value;
+            longitude = document.getElementById("longitude").value;
+            getPrayerTimes();
+        };
+        function toDay(){
+            d = new Date()
+            return `${d.getFullYear()}-${(d.getMonth()+1).toString().padStart(2,"0")}-${d.getDate().toString().padStart(2,"0")}`
+        }
+        async function getPrayerTimes() {
+            var html = '';
+            const currentYear = new Date().getFullYear();
+            const month = new Date().getMonth()+1;
+            const day = new Date().getDay();
+            console.log(day)
+            const strDate =`${currentYear}-${month.toString().padStart(2, "0")}-${day.toString().padStart(2, "0")}`
                 const response = await fetch(`http://localhost/api/adanApi.php?year=${currentYear}&month=${month}?latitude=${latitude}&longitude=${longitude}`);
                 const data = await response.json();
                 const prayerTimes = data;
                 prayerTimes.forEach(prayerTime => {
+                    //console.log(prayerTime.date.toString())
                     html += `<tr>
                         <td>${prayerTime.date}</td>
                         <td>${prayerTime.hijri}</td>
@@ -44,16 +59,83 @@
                 });
             html+="</table>";
             document.getElementById("prayer-times").innerHTML = html;
+            let today = prayerTimes.filter(e=>e.date == toDay() )[0]
+            const options = {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                    };
+            document.getElementById("currentdate").textContent = new Date().toLocaleDateString("ar-MA", options) + ` (${today.city})`;
+            document.getElementById("fajr").textContent = today.fajr;
+            document.getElementById("sobeh").textContent = today.sobeh;
+            document.getElementById("dhuhr").textContent = today.dhuhr;
+            document.getElementById("asr").textContent = today.asr;
+            document.getElementById("maghrib").textContent = today.maghrib;
+            document.getElementById("isha").textContent = today.isha;
+
+            
         }
+
+
 
        getPrayerTimes();
 
 
     </script>
+    <div class="container my-4">
+        <div class="row mb-3">
+            <div class="col-1 text-end">خط العرض</div>
+            <div class="col"><input type="text" id="latitude" class="form-control" dir="rtl"></div>
+            <div class="col-1 text-end">خط الطول</div>
+            <div class="col"><input type="text" id="longitude" class="form-control" dir="rtl"></div>
+            <div class="col-1 text-end">
+                <button class="btn btn-primary" id="search" onclick="search()">بحث</button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container">
+        <table class="table my-5 mx-auto" style="width: auto;">
+            <thead>
+                <tr class="">
+                    <th colspan="2" class="text-center h1" id="currentdate">Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>الفجر</td>
+                    <td id="fajr">00:00</td>
+                </tr>
+                <tr>
+                    <td>الشروق</td>
+                    <td id="sobeh">00:00</td>
+                </tr>
+                <tr>
+                    <td>الظهر</td>
+                    <td id="dhuhr">00:00</td>
+                </tr>
+                <tr>
+                    <td>العصر</td>
+                    <td id="asr">00:00</td>
+                </tr>
+                <tr>
+                    <td>المغرب</td>
+                    <td id="maghrib">00:00</td>
+                </tr>
+                <tr>
+                    <td>العشاء</td>
+                    <td id="isha">00:00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <div class="container">
         <h1 class="text-center">أوقات الصلاة</h1>
-         <table class="table">
-        <thead class="bg-primary text-white">
+         <table class="table table-bordered my-5">
+        <thead>
+            <tr class="table-info">
             <th>الملادي</th>
             <th>الهجري</th>
             <th>الفجر</th>
@@ -61,7 +143,9 @@
             <th>الظهر</th>
             <th>العصر</th>
             <th>المغرب</th>
-            <th>العشاء</th>
+            <th>العشاء</th> 
+            </tr>
+
         </thead>
         <tbody id="prayer-times">
         

@@ -8,63 +8,39 @@
     <script src="weatherConditions.js"></script>
     <title>Document</title>
     <style>
-        #weatherCard{
-            position: relative;
-            display: flex;
-            justify-items: center;
-            align-items: center;
-            flex-direction: column;
-            width: 300px;
-            height: 300px;
-            border-radius: 5%;
-            font-family: Perpetua, Tahoma, Geneva, Verdana, sans-serif;
-        }
-        #city{
-            position: absolute;
-            top : 7%;
-            left : 7%;
-            font-size: 2rem;
-        }
-        #temperature{
-            position: absolute;
-            top : 7%;
-            right : 7%;
-            font-size: 2rem;
-        }
-        #description{
-            font-size: 2rem;
-            position: absolute;
-            bottom: 7%;
-        }
-        #icondiv{
-            margin: auto;
-        }
-        #icon{
-            width: 150px;
-            height: 150px;
-            padding: 10%;
-            background-color: white;
-            border-radius: 50%;
-            margin: 20px;
-        }
+    
     </style>
     
 </head>
 <body>
+
     <div class="container mx-auto text-center">
-        <div id="weatherCard" class=" bg-primary mx-auto mt-5 p-5 text-white text-center"">
-            <div id="city">Ville</div>
-            <div id="icondiv" ><img id="icon" src="icons/SunnyDay.svg" alt=""></div>
-            <div id="temperature">20°</div>
-            <div id="description">Sunny</div>
-        </div> 
+        <div id="weatherCard" class="card mx-auto mt-5" style="width: 18rem;">
+            <div class="card-header text-center bg-primary text-white">
+                <h5 id="city" class="card-title">Ville</h5>
+            </div>
+            <div class="card-body text-center">
+                
+                <div id="icondiv" class="my-3">
+                    <img id="icon" src="weather-icons/Sunny.svg" alt="" class="card-img-top">
+                </div>
+
+                <h6 id="temperature" class="card-title mb-2">20°</h6>
+                
+            </div>
+            <div class="card-footer text-center bg-primary text-white">
+                <p id="description" class="card-text">Sunny</p>
+            </div>
+        </div>
     </div>
+
     
     <script>
         const city = document.getElementById("city")
         const icon = document.getElementById("icon")
         const temperature = document.getElementById("temperature")
         const description = document.getElementById("description")
+        const weatherCard = document.getElementById("weatherCard")
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
             const latitude = position.coords.latitude;
@@ -86,13 +62,14 @@
           let data = await response.json()
           console.log(data)
           let condition = getCondition(data.current.weather_code)
-          icon.src = `iconsv2/min/${condition.iconRes}.svg`
+          icon.src = `weather-icons/${condition.iconRes}.svg`
+        //   weatherCard.style.backgroundImage = `url(weather-icons/${condition.iconRes}.svg)`
           description.textContent = condition.DescriptionFr
           temperature.textContent = data.current.temperature_2m + "°"
-          let cityUrl = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${latitude}&lon=${longitude}`
+          let cityUrl = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${latitude}&longitude=${longitude}&localityLanguage=fr`
           let cityResponse = await fetch(cityUrl)
           let cityData = await cityResponse.json()
-          city.textContent = cityData.address.city || cityData.address.town || cityData.address.village || "Unknown location"  
+          city.textContent = cityData.city || cityData.locality || cityData.principalSubdivision || "Unknown location"
         }
     </script>
 </body>

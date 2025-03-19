@@ -1,10 +1,9 @@
 <?php
-header('Content-Type: application/json');
+header('Content-Type:application/json');
 $year = date('Y');
 $month = date('m');
 $latitude = 32.948384;
 $longitude = -5.6664149;
-
 if (isset($_GET['year'])) {
     $year = $_GET['year'];
 }
