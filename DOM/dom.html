@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>item 1</li>
+        <li>item 2</li>
+        <li>item 3</li>
+        <li>item 4</li>
+        <li>item 5</li>
+        <li>item 6</li>
+        <li>item 7</li>
+        <li>item 8</li>
+        <li>item 9</li>
+        <li>item 10</li>
+    </ul>
+
+    <script defer>
+        let items = document.querySelectorAll('ul>li:nth-child(odd)');
+        items.forEach(item => {
+            item.style.color = 'red';
+            item.style.listS;
+        item.style.listStyleType = 'square';
+        item.style.textDecoration = 'line-through';
+        item.style.textDecorationColor = '#AAA';
+        });
+    </script>
+</body>
+</html>

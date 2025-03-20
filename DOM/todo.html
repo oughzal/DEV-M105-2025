@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TODO List</title>
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/font-awesome.min.css">
+    <script src="../assets/jquery-3.7.1.min.js"></script>
+    <script src="../assets/bootstrap.bundle.js"></script>
+    <style>
+        .done{
+            text-decoration: line-through;
+            color: #726969;
+            list-style: "*";
+            font-weight: normal;
+        }
+        .undone{
+            color: inherit;
+            font-weight: bold;
+        }
+        .list-group-item{
+            cursor: pointer;
+        }
+        #tasks{
+            height: 300px;
+            overflow-y: auto;
+        }
+    </style>
+  
+</head>
+<body>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card bg-light my-5">
+                    <div class="card-header bg-light text-center">
+                        <h4>TODO List</h4>
+                    </div>
+                    <div class="card-body">
+                            <div class="form-group mb-3">
+                            <div class="input-group">
+                                <input type="text" id="newTask" value="task 1" class="form-control" placeholder="Enter task">
+                                <button id="addTask" class="btn btn-primary">+</button>
+                            </div>
+                        </div>
+                        <ul id="tasks" class="list-group">
+                        </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    let taskList = [];
+    let TaskIndex = -1;
+
+    $('#addTask').click(function () {
+        let newTaskText = $('#newTask').val().trim();
+        if (newTaskText !== '') {
+            taskList.unshift({ text: newTaskText, done: false });
+            $('#tasks').prepend(`
+                <li class="list-group-item undone">
+                    <i class="fa fa-check-circle text-secondary"></i> 
+                    <span class="task-text">${newTaskText}</span>
+                </li>
+            `);
+            $('#newTask').val('task ' + (taskList.length + 1));
+        }
+    });
+
+    $('#tasks').on('dblclick', 'li', function () {
+        let index = $(this).index();
+        let currentText = taskList[index].text;
+        let input = $(`<input type="text" class="form-control" value="${currentText}">`);
+        $(this).html(input);
+        input.focus();
+
+        input.on('blur', function () {
+            let updatedText = $(this).val().trim();
+            if (updatedText !== '') {
+                taskList[index].text = updatedText;
+                $(this).parent().html(`
+                    <i class="fa fa-check-circle ${taskList[index].done ? 'text-success' : 'text-secondary'}"></i> 
+                    <span class="task-text">${updatedText}</span>
+                `);
+            } else {
+                $(this).parent().html(`
+                    <i class="fa fa-check-circle ${taskList[index].done ? 'text-success' : 'text-secondary'}"></i> 
+                    <span class="task-text">${currentText}</span>
+                `);
+            }
+        });
+
+        input.on('keypress', function (e) {
+            if (e.which === 13) { // Enter key
+                input.blur();
+            }
+        });
+    });
+
+    $('#tasks').on('click', 'li', function () {
+        let index = $(this).index();
+        taskList[index].done = !taskList[index].done;
+        $(this).toggleClass('done', taskList[index].done);
+        $(this).toggleClass('undone', !taskList[index].done);
+        $(this)
+            .find('i')
+            .toggleClass('text-success', taskList[index].done)
+            .toggleClass('text-secondary', !taskList[index].done);
+    });
+        
+    </script>
+</body>
+</html>

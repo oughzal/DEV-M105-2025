@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>virtual keyboard</title>
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/font-awesome.min.css">
+    <script src="../assets/jquery-3.7.1.min.js"></script>
+    <script src="../assets/bootstrap.bundle.js"></script>
+    <style>
+        .keyboard button {
+            width: 50px;
+            height: 50px;
+            font-size: 1.2rem;
+            margin: 2px;
+        }
+        .keyboard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .keyboard button {
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            background-color: #f8f9fa;
+            color: #333;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .keyboard button:hover {
+            background-color: #e2e6ea;
+            transform: scale(1.1);
+        }
+
+        .keyboard button:active {
+            background-color: #d6d8db;
+            transform: scale(1);
+        }
+
+        .keyboard button.space {
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <div id="output" class="mb-3"></div>
+        
+        <div class="keyboard"></div>
+          
+    </div>
+
+    <script>
+        const keyboardLayout = [
+            [
+            { key: '²', shift: '', altGr: '' },
+            { key: '&', shift: '1', altGr: '' },
+            { key: 'é', shift: '2', altGr: '~' },
+            { key: '"', shift: '3', altGr: '#' },
+            { key: '\'', shift: '4', altGr: '{' },
+            { key: '(', shift: '5', altGr: '[' },
+            { key: '-', shift: '6', altGr: '|' },
+            { key: 'è', shift: '7', altGr: '`' },
+            { key: '_', shift: '8', altGr: '\\' },
+            { key: 'ç', shift: '9', altGr: '^' },
+            { key: 'à', shift: '0', altGr: '@' },
+            { key: ')', shift: '°', altGr: ']' },
+            { key: '=', shift: '+', altGr: '}' }
+            ],
+            [
+            { key: 'A', shift: 'A', altGr: '' },
+            { key: 'Z', shift: 'Z', altGr: '' },
+            { key: 'E', shift: 'E', altGr: '€' },
+            { key: 'R', shift: 'R', altGr: '' },
+            { key: 'T', shift: 'T', altGr: '' },
+            { key: 'Y', shift: 'Y', altGr: '' },
+            { key: 'U', shift: 'U', altGr: '' },
+            { key: 'I', shift: 'I', altGr: '' },
+            { key: 'O', shift: 'O', altGr: '' },
+            { key: 'P', shift: 'P', altGr: '' },
+            { key: '^', shift: '¨', altGr: '' },
+            { key: '$', shift: '£', altGr: '' }
+            ],
+            [
+            { key: 'Q', shift: 'Q', altGr: '' },
+            { key: 'S', shift: 'S', altGr: '' },
+            { key: 'D', shift: 'D', altGr: '' },
+            { key: 'F', shift: 'F', altGr: '' },
+            { key: 'G', shift: 'G', altGr: '' },
+            { key: 'H', shift: 'H', altGr: '' },
+            { key: 'J', shift: 'J', altGr: '' },
+            { key: 'K', shift: 'K', altGr: '' },
+            { key: 'L', shift: 'L', altGr: '' },
+            { key: 'M', shift: 'M', altGr: '' },
+            { key: 'ù', shift: '%', altGr: '' },
+            { key: '*', shift: 'µ', altGr: '' }
+            ],
+            [
+            { key: '<', shift: '>', altGr: '' },
+            { key: 'W', shift: 'W', altGr: '' },
+            { key: 'X', shift: 'X', altGr: '' },
+            { key: 'C', shift: 'C', altGr: '' },
+            { key: 'V', shift: 'V', altGr: '' },
+            { key: 'B', shift: 'B', altGr: '' },
+            { key: 'N', shift: 'N', altGr: '' },
+            { key: ',', shift: '?', altGr: '' },
+            { key: ';', shift: '.', altGr: '' },
+            { key: ':', shift: '/', altGr: '' },
+            { key: '!', shift: '§', altGr: '' }
+            ],
+            [
+            { key: 'Ctrl', shift: 'Ctrl', altGr: '' },
+            { key: 'Alt', shift: 'Alt', altGr: '' },
+            { key: 'AltGr', shift: 'AltGr', altGr: '' },
+            { key: 'Space', shift: 'Space', altGr: '' },
+            { key: 'Ctrl', shift: 'Ctrl', altGr: '' }
+            ]
+        ];
+
+    const keyboardContainer = document.querySelector('.keyboard');
+    const output = document.getElementById('output');
+    let isCapsLock = false;
+    let isShiftPressed = false;
+
+    // Function to render the keyboard
+    function renderKeyboard() {
+        keyboardContainer.innerHTML = '';
+        keyboardLayout.forEach(row => {
+        const rowDiv = document.createElement('div');
+        rowDiv.classList.add('d-flex', 'justify-content-center', 'mb-2');
+        row.forEach(key => {
+            const button = document.createElement('button');
+            button.classList.add('btn', 'btn-secondary');
+            button.textContent = getKeyLabel(key);
+            button.addEventListener('click', () => handleKeyPress(key));
+            rowDiv.appendChild(button);
+        });
+        keyboardContainer.appendChild(rowDiv);
+        });
+    }
+
+    // Function to get the appropriate key label based on CapsLock and Shift
+    function getKeyLabel(key) {
+        if (key.key === 'Space') return ' ';
+        if (isShiftPressed) return key.shift || key.key;
+        if (isCapsLock) return key.key.toUpperCase();
+        return key.key.toLowerCase();
+    }
+
+    // Function to handle key press
+    function handleKeyPress(key) {
+        if (key.key === 'Space') {
+        output.textContent += ' ';
+        } else {
+        output.textContent += getKeyLabel(key);
+        }
+        if (isShiftPressed) {
+        isShiftPressed = false;
+        renderKeyboard();
+        }
+    }
+
+    // Event listeners for CapsLock and Shift
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'CapsLock') {
+        isCapsLock = !isCapsLock;
+        renderKeyboard();
+        }
+        if (event.key === 'Shift') {
+        isShiftPressed = true;
+        renderKeyboard();
+        }
+    });
+
+    document.addEventListener('keyup', (event) => {
+        if (event.key === 'Shift') {
+        isShiftPressed = false;
+        renderKeyboard();
+        }
+    });
+
+    // Initial render
+    renderKeyboard();
+    </script>
+</body>
+</html>
+  

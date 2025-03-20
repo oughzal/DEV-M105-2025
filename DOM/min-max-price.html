@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #priceRange {
+            position: relative;
+            width: 300px;
+            margin: 20px auto;
+            background-color: rgb(12, 99, 175);
+        }
+
+        input[type="range"] {
+            position: absolute;
+            width: 100%;
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+            pointer-events: none;
+            
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            pointer-events: auto;
+            width: 20px;
+            height: 20px;
+            background-color: #007BFF;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            pointer-events: auto;
+            width: 20px;
+            height: 20px;
+            background-color: #007BFF;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        input[type="range"]::-ms-thumb {
+            pointer-events: auto;
+            width: 20px;
+            height: 20px;
+            background-color: #007BFF;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid #fff;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+    </style>
+</head>
+<body> 
+    <label for="priceRange">Select Price Range:</label>
+<div id="priceRange">
+    <input type="range" id="minPrice" min="0" max="100" value="25" oninput="updatePriceRange()">
+    <input type="range" id="maxPrice" min="0" max="100" value="50" oninput="updatePriceRange()"> 
+</div>
+<p>Selected Range: <span id="priceDisplay">25 - 50</span></p>
+
+<script>
+    function updatePriceRange() {
+        const minPrice = document.getElementById('minPrice').value;
+        const maxPrice = document.getElementById('maxPrice').value;
+        const priceDisplay = document.getElementById('priceDisplay');
+
+        if (parseInt(minPrice) <= parseInt(maxPrice)) {
+            priceDisplay.textContent = `${minPrice} - ${maxPrice}`;
+        }
+    }
+</script>
+</html>
