@@ -1,0 +1,30 @@
+*{
+    font-family: perputia;
+    font-size: 1.2em;
+}
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+body>div{
+    text-align: center;
+}
+#canvas{
+    margin: auto;
+    display: block;
+    border: 2px solid #00F;
+    padding: 0px;
+    display: block;
+    margin-top: 10px;
+}
+button{
+    width: 200px;
+    height: 70px;
+    color: white;
+    background-color: darkblue;
+    border-radius: 50px;
+    margin-top: 10px;
+    padding: 6px;
+}

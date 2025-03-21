@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Play cards</title>
+    <link rel="stylesheet" href="../../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/font-awesome.min.css">
+    <script src="../../assets/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="style.css">
+   
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row bg-primary text-white p-2">
+            <div class="col-4">
+                <span id="scoreNumber">Score : 0</span>
+            </div>
+            <div class="col-4 text-center">
+                <div class="input-group">
+                  <input type="number" class="form-control" id="cardNumber" value="2" min="4" max="52">
+                    <button id="start" class="btn btn-success" onclick="newGame()"><i class="fa fa-refresh"></i></button>  
+                </div>
+            </div>
+            <div class="col-4 text-end">
+                <span id="triesNumber">Tries : 0</span>
+            </div>
+                
+        </div>
+        <div class="row">
+            <div class="col-12 d-flex justify-content-center align-items-center" style="min-height: 50vh;">
+               <div id="cards"></div> 
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

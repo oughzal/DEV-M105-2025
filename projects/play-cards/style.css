@@ -1,0 +1,117 @@
+.card {
+    width: 100px;
+    height: 140px;
+
+    background-image: url(./card.svg);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 5px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px;
+    text-align: center;
+    font-size: 3rem;
+    font-weight: bold;
+    color: black;
+    background-color: white;
+    position: relative;
+    cursor: pointer;
+}
+
+.card::before,
+.card::after {
+    position: absolute;
+    font-size: 2rem;
+}
+
+.card::before {
+    top: 2px;
+    left: 2px;
+}
+
+.card::after {
+    bottom: 2px;
+    right: 2px;
+    transform: rotate(180deg);
+}
+
+.card.hearts::before,
+.card.hearts::after,
+.card.diamonds::before,
+.card.diamonds::after {
+    color: red;
+}
+
+.card.clubs::before,
+.card.clubs::after,
+.card.spades::before,
+.card.spades::after {
+    color: black;
+}
+
+.card.hearts::before,
+.card.hearts::after {
+    content: '\2665';
+}
+
+.card.diamonds::before,
+.card.diamonds::after {
+    content: '\2666';
+}
+
+.card.clubs::before,
+.card.clubs::after {
+    content: '\2663';
+}
+
+.card.spades::before,
+.card.spades::after {
+    content: '\2660';
+}
+
+.card.hearts,
+.card.diamonds {
+    color: red;
+}
+
+.card.clubs,
+.card.spades {
+    color: black;
+}
+
+.card.flipped {
+    background-image: url(./back.svg);
+    background-size:cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    color : transparent;
+}
+
+.card.flipped::before,
+.card.flipped::after {
+    color: black;
+}
+
+.card::selection {
+    background-color: transparent;
+}
+
+.card.win {
+    color : green;
+}
+.card.win::before,
+.card.win::after {
+    color: green;
+}
+
+.winGame{
+   color: green;
+    font-size: 3rem;
+}
+
+#scoreNumber,#triesNumber{
+    font-size: 2rem;
+    font-weight: bold;
+}
