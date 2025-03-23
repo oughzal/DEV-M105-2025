@@ -1,0 +1,93 @@
+@font-face {
+    font-family: 'digital-clock';
+    src: url(../../assets/fonts/DS-DIGI.TTF);
+}
+
+.digital {
+    font-family: 'digital-clock';
+    font-size: 2rem;
+    color: #00ff00;
+    text-shadow: 0 0 5px #000;
+    background-color: #000;
+    padding: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #000;
+}
+
+
+#clock {
+    font-size: 6rem;
+    color: #00ff00;
+    font-family: 'digital-clock';
+    position: relative;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#clock::before {
+    content: 'TIME :';
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    height: 3px;
+    font-size: 2rem;
+    border: none;
+}
+
+#date::before {
+    content: 'DATE :';
+    position: absolute;
+    top: 20px;
+    left: 10px;
+    height: 3px;
+    font-size: 2rem;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#days {
+    display: flex;
+    height: 100%;
+    align-items: center;
+    font-family: 'digital-clock';
+    font-size: 2rem;
+    color: #eee;
+    position: relative;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+#days>div {
+    color: #444;
+}
+
+#days>.active {
+    color: #00ff00;
+    border-bottom: 3px solid #00ff00;
+}
+
+#date {
+    font-size: 6rem;
+    color: #00ff00;
+    font-family: 'digital-clock';
+    position: relative;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#clock-card {
+    background-color: #000;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #000;
+    margin: 1rem;
+    position: relative;
+}

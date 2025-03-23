@@ -1,0 +1,23 @@
+@font-face {
+    font-family: 'digital';
+    src: url(../../assets/fonts/DS-DIGI.TTF);
+}
+.card-body{
+    font-family: digital;
+    font-size: 2rem;
+    color: #333;
+    background-color: #eee;
+}
+
+#calendar-table tr>:nth-child(6), #calendar-table tr>:nth-child(7){
+    color: rgb(222, 11, 11) !important;
+}
+.today{
+    background-color: #f0f0f0 !important;
+    color: rgb(15, 15, 186) !important;
+    font-weight: bold  !important;
+}
+
+td.prev-date, td.next-date {
+    color: #ddd !important;
+}

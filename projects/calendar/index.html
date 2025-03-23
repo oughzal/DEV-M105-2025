@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Month Calendar</title>
+    <link rel="stylesheet" href="../../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/font-awesome.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="../../assets/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/bootstrap.bundle.js"></script>
+
+</head>
+
+<body>
+    <div class="containter mt-5">
+        <div class="card col-5 mx-auto" id="calendar-card">
+            <div class="card-header text-center">
+                <div class="row">
+                    <div class="col-6">
+                        <select type="text" class="form-control text-center" id="month" onchange="renderCalendar()">
+                            <option value="0">Janvier</option>
+                            <option value="1">Février</option>
+                            <option value="2">Mars</option>
+                            <option value="3">Avril</option>
+                            <option value="4">Mai</option>
+                            <option value="5">Juin</option>
+                            <option value="6">Juillet</option>
+                            <option value="7">Août</option>
+                            <option value="8">Septembre</option>
+                            <option value="9">Octobre</option>
+                            <option value="10">Novembre</option>
+                            <option value="11">Décembre</option>
+                        </select>
+                    </div>
+                    <div class="col-6">
+                        <select name="" id="year" class="form-control text-center" onchange="renderCalendar()">
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                        </select>
+                    </div>
+                </div>
+
+            </div>
+            <div class="card-body text-white bg-black">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row text-center">
+                            <div class="col d-flex justify-content-center align-items-center text-center">Lun</div>
+                            <div class="col d-flex justify-content-center align-items-center text-center">Mar</div>
+                            <div class="col d-flex justify-content-center align-items-center text-center">Mer</div>
+                            <div class="col d-flex justify-content-center align-items-center text-center">JEU</div>
+                            <div class="col d-flex justify-content-center align-items-center text-center">VEN</div>
+                            <div class="col d-flex justify-content-center align-items-center text-center text-danger">Sam</div>
+                            <div class="col d-flex justify-content-center align-items-center text-center text-danger">Dim</div>
+                        </div>
+                        <div id="calendar">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-dark" id="today">Calendrier</div>
+        </div>
+    </div>
+    <script src="script.js" defer></script>
+</body>
+
+</html>

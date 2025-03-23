@@ -59,23 +59,23 @@ for(card of cards) {
     cardDiv.onclick = function(){
          if(carte1 ==null){
             carte1 = this
-            carte1.flipped = false;;
-            carte1.classList = `card card ${card.color}`;
+            carte1.flipped = false;
+            index1 = parseInt(carte1.dataset.id);
+            carte1.className = `card ${cards[index1].color}`;
+
         }
         else{
             if(carte1 == this) return false;
             carte2 = this
             carte2.flipped = false;
-            carte2.classList = `card card ${card.color}`;
-            let index1 = parseInt(carte1.dataset.id);
-            let index2 = parseInt(carte2.dataset.id);
+            index2 = parseInt(carte1.dataset.id);
+            carte2.className = `card ${cards[index2].color}`;
+
             if(String(carte1.dataset.name) == String(carte2.dataset.name)){
                 carte1.onclick =null
                 carte2.onclick =null
                 carte1.style.cursor ="default"
-                carte2.style.cursor ="default"
-                carte1.classList.remove('flipped')
-                carte2.classList.remove('flipped')
+                carte2.style.cursor ="default";    
                 carte1.classList.add('win')
                 carte2.classList.add('win')
                 cardNodes = cardNodes.filter(node => node !== carte1 && node !== carte2);
@@ -90,7 +90,6 @@ for(card of cards) {
                     html += '</div>';
                     cardsDiv.innerHTML = html;
                     setTimeout(() => {
-                       
                         cardNumber.value = nb;
                         newGame();
                     }, 3000);
@@ -112,7 +111,7 @@ for(card of cards) {
     cardsDiv.appendChild(cardDiv);
     setTimeout(() => {
         flippeAllCards(true);
-    }, 3000);
+    }, 5000);
 }
 }
 
