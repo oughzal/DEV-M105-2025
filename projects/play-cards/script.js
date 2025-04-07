@@ -111,6 +111,7 @@ for(card of cards) {
     cardsDiv.appendChild(cardDiv);
     setTimeout(() => {
         flippeAllCards(true);
+        
     }, 5000);
 }
 }

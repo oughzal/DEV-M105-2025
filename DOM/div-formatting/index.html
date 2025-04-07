@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIV Formatting</title>
+    <link rel="stylesheet" href="../../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/font-awesome.min.css">
+    <script src="../../assets/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/bootstrap.bundle.js"></script>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<div class="container my-5">
+    <div class="row">
+
+        <div class="col-3" id="settings">
+            <form action="#" name="actions">
+
+                <!-- Text Settings -->
+                <div class="mb-3">
+                    <label for="textContent" class="form-label">Text Content</label>
+                    <input type="text" id="textContent" name="textContent" class="form-control" value="Target" data-unit="">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Text Style</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="bold" name="bold" checked>
+                        <label class="form-check-label" for="bold">Bold</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="italic" name="italic">
+                        <label class="form-check-label" for="italic">Italic</label>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="fontFamily" class="form-label">Font Family</label>
+                    <select name="fontFamily" id="fontFamily" class="form-select">
+                        <option value="Arial">Arial</option>
+                        <option value="Courier New">Courier New</option>
+                        <option value="Georgia">Georgia</option>
+                        <option value="Times New Roman">Times New Roman</option>
+                        <option value="Verdana">Verdana</option>
+                        <option value="Perpetua">Perpetua</option>
+                        <option value="Roboto">Roboto</option>
+                        <option value="Open Sans">Open Sans</option>
+                        <option value="Lato">Lato</option>
+                        <option value="Montserrat">Montserrat</option>
+                        <option value="Tahoma">Tahoma</option>
+                        <option value="Trebuchet MS">Trebuchet MS</option>
+                    </select>
+                </div>
+                <div class="my-3">
+                    <label for="fontSize" class="form-label">Font Size (px)</label>
+                    <input type="range" id="fontSize" name="fontSize" class="form-range mt-3" value="20" min="0" max="100" data-unit="px">
+                </div>
+                <div class="mb-3">
+                    <label for="color" class="form-label">Text Color</label>
+                    <input type="color" id="color" name="color" class="form-control form-control-color" value="#000000" data-unit="">
+                </div>
+
+                <!-- Background Settings -->
+                <div class="mb-3">
+                    <label for="backgroundColor" class="form-label">Background Color</label>
+                    <input type="color" id="backgroundColor" name="backgroundColor" class="form-control form-control-color" value="#ffffff" data-unit="">
+                </div>
+
+                <!-- Size Settings -->
+                <div class="mb-3">
+                    <label for="width" class="form-label">Width (%)</label>
+                    <input type="range" id="width" name="width" class="form-range" value="20" min="0" max="100" data-unit="%">
+                </div>
+                <div class="mb-3">
+                    <label for="height" class="form-label">Height (%)</label>
+                    <input type="range" id="height" name="height" class="form-range" value="20" min="0" max="100" data-unit="%">
+                </div>
+
+                <!-- Border Settings -->
+                <div class="mb-3">
+                    <label for="radius" class="form-label">Border Radius (%)</label>
+                    <input type="range" id="radius" name="radius" class="form-range" value="0" min="0" max="50" data-unit="%">
+                </div>
+                <div class="mb-3">
+                    <label for="borderWidth" class="form-label">Border Width (px)</label>
+                    <input type="range" id="borderWidth" name="borderWidth" class="form-range" value="3" min="0" max="20" data-unit="px">
+                </div>
+                <div class="mb-3">
+                    <label for="borderColor" class="form-label">Border Color</label>
+                    <input type="color" id="borderColor" name="borderColor" class="form-control form-control-color" value="#000000" data-unit="">
+                </div>
+                <div class="mb-3">
+                    <label for="borderStyle" class="form-label">Border Style</label>
+                    <select name="borderStyle" id="borderStyle" class="form-select">
+                        <option value="none">None</option>
+                        <option value="solid" selected>Solid</option>
+                        <option value="dashed">Dashed</option>
+                        <option value="dotted">Dotted</option>
+                        <option value="double">Double</option>
+                        <option value="groove">Groove</option>
+                        <option value="ridge">Ridge</option>
+                        <option value="inset">Inset</option>
+                        <option value="outset">Outset</option>
+                    </select>
+                </div>
+
+                <!-- Transformation Settings -->
+                <div class="mb-3">
+                    <label for="rotation" class="form-label">Rotation (deg)</label>
+                    <input type="range" id="rotation" name="rotation" class="form-range" value="0" min="0" max="360" data-unit="deg">
+                </div>
+
+            </form>
+        </div>
+        <div id="container" class="col-9 d-flex justify-content-center align-items-center">
+            <div id="target">Target</div>
+        </div>
+    </div>
+</div>
+
+    <script src="script.js"></script> 
+</body>
+</html>

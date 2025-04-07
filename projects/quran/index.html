@@ -1,0 +1,145 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>القران الكريم</title>
+    <link rel="stylesheet" href="assets/bootstrap.rtl.min.css">
+    <!-- <link rel="stylesheet" href="assets/font-awesome.min.css"> -->
+    <script src="assets/bootstrap.min.js"></script>
+    <script src="quran.js"></script>
+    <!-- <script src="mo9ri2in.js"></script> -->
+    <script src="recitations.js"></script>
+    <style>
+
+        #ayat{
+            height: 400px;
+            overflow: none;
+            overflow-y: auto;
+        }
+        @font-face {
+            font-family: 'Amiri Quran';
+            src: url('assets/AmiriQuran-Regular.ttf') format('truetype');
+        }
+        @font-face {
+            font-family: 'Othmani';
+            src: url('assets/ar-Othmani.ttf') format('truetype');
+        }
+        
+        #ayat .list-group-item{
+            font-family: 'Othmani' ;
+            font-style: normal;
+            font-size: 1.3em;
+            
+        }
+    </style>
+</head>
+<body dir="rtl" class="bg-success">
+    <div class="container my-5 py-2 bg-success text-white" >
+        <div class="row my-2">
+            <div class="col-md-1 my-1">
+                المقرئ :
+            </div>
+            <div class="col-md-3 my-1">
+                <select id="mo9ri2" class="form-select">
+
+                </select>
+            </div>
+            <div class="col-md-1 my-1">
+                السورة :
+            </div>
+            <div class="col-md-3 my-1">
+                <select id="sorat" class="form-select">
+
+                </select>
+            </div>
+        </div>
+        <div class="row py-1 mx-1">
+            <ul class="list-group py-2" id="ayat">
+
+            </ul>
+        </div>
+    </div>
+    <script>
+        function getSource(s,a){
+                return url +"/" + String(s).padStart(3,'0') + String(a).padStart(3,'0') +".mp3"
+        }
+        var audio = new Audio()
+        var url = mo9ri2in[0].url
+        var mo9ri2 = document.getElementById("mo9ri2")
+        var sorat = document.getElementById("sorat")
+        var ayat = document.getElementById("ayat")
+        var current = 1
+        var nbAyat =  0
+        mo9ri2.onchange= function(){
+            url = this.value
+            console.log(url)
+            current = parseInt(audio.title)
+            document.getElementById("aya"+current).click()
+        }
+        audio.onended = function(){
+             current = parseInt(audio.title)
+             current++
+             if( current <= nbAyat){
+                document.getElementById("aya"+current).click()
+             }
+             
+        }
+        sorat.onchange = function(){
+            index = this.value
+            ayat.innerHTML=""
+            let i = 1
+            nbAyat = quran[index].array.length
+            for(let a of quran[index].array){
+                li = document.createElement('li')
+                li.setAttribute("id","aya"+i)
+                li.setAttribute("current",i)
+                li.setAttribute("sorat",quran[index].id)
+                // li.setAttribute("src", lien + a.path)
+                li.setAttribute("src", getSource(quran[index].id,a.id))
+                li.textContent =i++ +" : " + a.ar
+                li.classList.add("list-group-item",'px-2','py-2')
+                li.style.cursor ="pointer"
+                li.onclick = function(){
+                    this.scrollIntoView({behavior: 'smooth'}, true)
+                    current = parseInt(this.getAttribute("current"))
+                    s = parseInt(this.getAttribute("sorat"))
+                    audio.title = parseInt(this.getAttribute("current"))
+                    audio.src = getSource(s,current)
+                    audio.play()
+                    current = parseInt(this.current)
+                    for(let e of ayat.children){
+                        e.classList.remove("active")
+                    }
+                    this.classList.add("active")
+                }
+                ayat.appendChild(li)
+
+            }
+            document.getElementById("aya1").click()
+        }
+        
+        function fillSelect(){
+            for( m of mo9ri2in){
+                option = document.createElement('option')
+                option.value = m.url
+                option.textContent = m.name
+                mo9ri2.appendChild(option)
+            }
+            let i = 0;
+            for(let s of quran){
+                option = document.createElement('option')
+                option.value = i++
+                option.textContent = s.name
+                sorat.appendChild(option)
+            }
+            sorat.value=0
+            sorat.dispatchEvent(new Event('change'))
+        }
+        fillSelect()
+        
+    </script>
+</body>
+</html>

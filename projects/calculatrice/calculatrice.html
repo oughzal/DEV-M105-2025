@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>calculatrice</title>
+    <link rel="stylesheet" href="../../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/font-awesome.min.css">
+    <script src="../../assets/jquery-3.7.1.min.js"></script>
+    <script src="../assets/bootstrap.bundle.js"></script>
+    <style>
+        #app button{
+            width: 80px;
+            height: 80px;
+            font-weight: bold;
+            font-size: 1.3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #equal button{
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container my-5" id="app">
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                <div class="card bg-light">
+                    <div class="card-header bg-lignt text-center">
+                        <h4>Calculatrice</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-group mb-3">
+                            <input type="text" id="result" value="0" class="form-control form-control-lg text-end" readonly disabled>
+                        </div>
+                        <div class="row" id="buttons"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script defer>
+        const buttons = [
+            { label: '7', class: 'btn-secondary' },
+            { label: '8', class: 'btn-secondary' },
+            { label: '9', class: 'btn-secondary' },
+            { label: '←', class: 'btn-danger' },
+            { label: '4', class: 'btn-secondary' },
+            { label: '5', class: 'btn-secondary' },
+            { label: '6', class: 'btn-secondary' },
+            { label: '/', class: 'btn-warning' },
+            { label: '1', class: 'btn-secondary' },
+            { label: '2', class: 'btn-secondary' },
+            { label: '3', class: 'btn-secondary' },
+            { label: '*', class: 'btn-warning' }, 
+            { label: 'C', class: 'btn-danger' },
+            { label: '.', class: 'btn-secondary' },
+            { label: '0', class: 'btn-secondary' },
+            { label: '-', class: 'btn-warning' },
+            { label: '=', class: 'btn-success' },
+            { label: '+', class: 'btn-warning' }
+        ];
+
+        const container = document.querySelector('#buttons');
+        const resultInput = document.getElementById('result');
+
+        buttons.forEach(button => {
+            const col = document.createElement('div');
+            if(button.label === '='){
+                col.className = 'col-9 mb-2';
+                col.id = 'equal';
+            }else
+            {
+                col.className = 'col-3 mb-2';
+            }
+
+            const btn = document.createElement('button');
+            btn.className = `btn ${button.class} btn-block rounded p-3`;
+            btn.textContent = button.label;
+
+            btn.addEventListener('click', () => {
+                if (button.label === '=') {
+                    try {
+                        resultInput.value = eval(resultInput.value);
+                    } catch {
+                        resultInput.value = 'Error';
+                    }
+                } else if (button.label === 'C') {
+                    resultInput.value = '0';
+                } else if (button.label === '←') {
+                    resultInput.value = resultInput.value.slice(0, -1) || '0';
+                } else if (['+', '-', '*', '/'].includes(button.label)) {
+                    try {
+                        resultInput.value = eval(resultInput.value) + button.label;
+                    } catch {
+                        resultInput.value = 'Error';
+                    }
+                } else {
+                    if (resultInput.value === '0' && button.label !== '.') {
+                        resultInput.value = button.label;
+                    } else {
+                        resultInput.value += button.label;
+                    }
+                }
+            });
+
+            col.appendChild(btn);
+            container.appendChild(col);
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p id="p1">paragraphe 1</p>
+    <p class="p">paragraphe 1</p>
+    <p>paragraphe 1</p>
+    <div>
+        <p class="p">paragraphe 3</p>
+    </div>
+    <a href="#" target="_blank">link1</a>
+    <a href="ofppt.ma">link2</a>
+    <form action="" name="f1">
+        <input type="text" name="nom" value="DEV" id="nom">
+        <input type="text" name="prenom">
+    </form>
+    <div id="parent">Text</div>
+    <p contenteditable="true" id="content">Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quos aliquam delectus quod, temporibus blanditiis a optio nisi illum quisquam incidunt veniam iste quae quidem impedit excepturi, odio veritatis ex aperiam.</p>
+    <script>
+        const form = document.forms.f1
+        form.nom.onblur = ()=>{
+            console.log(form.nom.value)
+        }
+        
+        const content = document.querySelector("#content")
+        const parent = document.querySelector("#parent")
+        content.onblur = ()=>{
+            parent.textContent = content.textContent
+        }
+    </script>
+</body>
+</html>

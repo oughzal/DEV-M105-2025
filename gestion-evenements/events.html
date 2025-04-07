@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des événements</title>
+    <style>
+    #b1{
+        width: 500px;
+        height: 500px;
+        background-color: #eee;
+        display : flex;
+        font-size: 1.3rem;
+        justify-content: center;
+        align-items: center;
+    }
+    </style>
+
+</head>
+<body>
+    <div id="b1"  onmou>DEV101</div>
+    <input type="text" name="number" id="number" value="0">
+
+    <script>
+       var b = document.querySelector("#b1")
+        var input = document.querySelector("#number")
+        input.onkeypress = (event)=>{
+            console.log(event.keyCode)
+            if(event.keyCode < 48 || event.keyCode > 57){
+                return false
+            }
+        }
+
+        b.onmouseover = (event)=>{
+        //    b.textContent = `${event.clientX} - ${event.clientY}`
+        }
+        b.mousedown = (event)=>{
+            b.textContent = `button : ${event.button}`
+        }
+    </script>
+</body>
+</html>

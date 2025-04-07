@@ -6,6 +6,11 @@
     <title>Document</title>
 </head>
 <body>
+
+test
+
+
+
     <ul>
         <li>item 1</li>
         <li>item 2</li>
@@ -28,6 +33,10 @@
         item.style.textDecoration = 'line-through';
         item.style.textDecorationColor = '#AAA';
         });
+
+        let c = document.body.children[0].textContent;
+        c = "<div>" + c + "</div>";
+        document.body.childNodes[0].innerHTML = c;
     </script>
 </body>
 </html>

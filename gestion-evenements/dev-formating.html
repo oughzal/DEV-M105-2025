@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #parent{
+            width: 500px;
+            height: 500px;
+            display : flex;
+            font-size: 1.3rem;
+            justify-content: center;
+            align-items: center;
+            border : 1px solid #000;
+            margin: auto;
+        }
+        #target{
+            width: 200px;
+            height: 200px;
+            display : flex;
+            font-size: 3rem;
+            justify-content: center;
+            align-items: center;
+            font-weight: normal;
+        }
+    </style>
+</head>
+<body>
+    <div id="parent">
+        <div id="target">DEV101</div>
+    </div>
+    <form action="#" name="f">
+    <input type="text" name="content" id="content" value="DEV101">
+    <input type="checkbox" name="bold" id="bold">Bold
+    <input type="color" name="color">
+    <input type="color" name="backgroundColor">
+    <select name="fontFamily">
+        <option value="Perpetua">Perpetua</option>
+        <option value="Arial">Arial</option>
+        <option value="Georgia">Georgia</option>
+        <option value="Times New Roman">Times New Roman</option>
+    </select>
+    <input type="range" name="fontSize" min="8" max="100" value="12">
+    <input type="range" name="width" min="0" max="100" value="12">
+    <input type="range" name="height" min="0" max="100" value="12">
+  
+    </form>
+
+    <script>
+        var target = document.querySelector("#target")
+        var f = document.forms.f
+        f.content.oninput = ()=>{
+            target.textContent = f.content.value
+        }
+        f.bold.onchange = ()=>{
+            console.log(f.bold.value)
+            if(f.bold.checked){
+                target.style.fontWeight = "bold"
+            } else{
+                target.style.fontWeight = "normal" 
+            }
+        }
+        f.color.oninput = function (){
+            target.style.color = f.color.value
+        }
+        f.backgroundColor.oninput = function(){
+            target.style.backgroundColor = f.backgroundColor.value 
+        }
+        f.fontFamily.onchange = ()=>{
+            target.style.fontFamily = f.fontFamily.value
+        }
+        f.fontSize.oninput = function(){
+            target.style.fontSize = f.fontSize.value + "pt"
+        }
+        f.width.oninput = ()=>{
+            target.style.width = f.width.value + "%"
+        }
+         f.height.oninput = ()=>{
+            target.style.height = f.height.value + "%"
+        }
+        
+
+    </script>
+</body>
+</html>

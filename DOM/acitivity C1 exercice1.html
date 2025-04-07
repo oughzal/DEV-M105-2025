@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Activité C1 exercice 1</title>
+    <link rel="stylesheet" href="../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../assets/font-awesome.min.css">
+    <script src="../assets/bootstrap.bundle.js"></script>
+
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-8 mx-auto mt-5">
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Activité C1 exercice 1</h5>
+                    </div>
+                    <div class="card-body">
+                        <form class="form"></form>
+                        <div class="row">
+                            <div class="col-8">
+                                <input id="ville" name="ville" type="text" class="form-control" placeholder="Entrez le ville" required value="KHEnifra">
+                            </div>
+                            <div class="col-2">
+                                <div class="btn btn-primary" onclick="ajouter()">Ajouter</div>
+                            </div>
+                            <div class="col-2">
+                                <div class="btn btn-primary" onclick="removeSelected()">supprimer</div>
+                            </div>
+                           </form>  
+                        </div>
+                       <div class="row mt-2">
+                        <ul class="list-group" id="cityList">
+                        
+                        </ul>
+                       </div>
+                       
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let selectedItems = []
+        function ajouter(){
+            const ville = document.getElementById("ville")
+            const cityList = document.querySelector("#cityList")
+            //créer li (ville) -> append citylist
+            let item = document.createElement("li")
+            item.classList.add("list-group-item")
+            item.textContent = ville.value
+            item.onclick = ()=>{
+                
+            }
+            cityList.prepend(item)
+            // html =`<li class="list-group-item" onclick="selected(this)">${ville.value}</li>`
+            // console.log(html)
+            // cityList.innerHTML += html
+        }
+        
+        function selected(elet){
+            index = selectedItems.indexOf(elet)
+            if( index == -1){
+              elet.style.backgroundColor ="green"
+              selectedItems.push(elet)  
+            }
+            else{
+                elet.style.backgroundColor ="inherit" 
+                selectedItems.splice(index,1)
+            }
+            
+        }
+
+        function removeSelected(){
+            selectedItems.forEach(e =>
+                e.remove()
+            )
+        }
+    </script>
+</body>
+</html>
