@@ -56,13 +56,18 @@
         let c = null
         chrono = document.querySelector("#chrono")
         document.querySelector("#play").onclick = ()=>{
-            c = setInterval(addOneMs,10)
+            if(c==null){
+              c = setInterval(addOneMs,10)  
+            }
+            
         }
          document.querySelector("#stop").onclick = ()=>{
             clearInterval(c)
+            c = null
         }
          document.querySelector("#reset").onclick = ()=>{
             clearInterval(c)
+            c= null
             ms=-1
             s = 0
             m=0
