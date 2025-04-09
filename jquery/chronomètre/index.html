@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chrono</title>
+    <link rel="stylesheet" href="../../assets/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/font-awesome.min.css">
+    <script src="../../assets/jquery-3.7.1.min.js"></script>
+    <script src="../../assets/bootstrap.bundle.js"></script>
+    <style>
+        body{
+            display: flex;
+            width: 100vw;
+            min-height: 100dvh;
+            justify-content: center;
+            align-items: center;
+        }
+        #container{
+            border : 1px solid #eee;
+            padding: 20px;
+            text-align: center;
+            background-color: black;
+            width: 400px;
+        }
+        @font-face {
+            font-family: digital ;
+            src: url(../../assets/fonts/DS-DIGIB.TTF);
+            
+        }
+        #chrono{
+            font-size: 4rem;
+            font-family: digital;
+            color: rgb(28, 235, 28);
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="chrono">00:00:00:00</div>
+        <div>
+            <button id="play" class="btn btn-success"><i class="fa fa-play"></i></button>
+            <button id="stop" class="btn btn-success"><i class="fa fa-stop"></i></button>
+            <button id="reset" class="btn btn-success"><i class="fa fa-refresh"></i></button>
+            
+        </div>
+
+    </div>
+
+    <script>
+        let ms = 0
+        let s = 0
+        let m = 0
+        let h = 0
+        let c = null
+        chrono = document.querySelector("#chrono")
+        document.querySelector("#play").onclick = ()=>{
+            c = setInterval(addOneMs,10)
+        }
+         document.querySelector("#stop").onclick = ()=>{
+            clearInterval(c)
+        }
+         document.querySelector("#reset").onclick = ()=>{
+            clearInterval(c)
+            ms=-1
+            s = 0
+            m=0
+            h=0
+            addOneMs()
+        }
+
+        function addOneMs(){
+            ms++;
+            if(ms == 100){
+                ms =0
+                s++
+            }
+            if(s==60){
+                s=0
+                m++
+            }
+            if(m==60){
+                m=0
+                h++
+            }
+            chrono.textContent = `${h.toString().padStart(2,"0")}:${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}:${ms.toString().padStart(2,"0")}`
+        }
+        
+    </script>
+</body>
+</html>

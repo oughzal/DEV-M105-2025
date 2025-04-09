@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horloge analogique responsive</title>
+  <style>
+    :root {
+      --taille: 80vmin;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #f4f4f4;
+    }
+
+    .cadran {
+      position: relative;
+      width: var(--taille);
+      height: var(--taille);
+      border: 0.6vmin solid #000;
+      border-radius: 50%;
+      background: white;
+    }
+
+    .chiffres div {
+      position: absolute;
+      width: 8%;
+      aspect-ratio: 1;
+      text-align: center;
+      font-weight: bold;
+      font-size: 3vmin;
+      transform: translate(-50%, -50%);
+    }
+
+    .graduations div {
+      position: absolute;
+      width: 0.5%;
+      height: 80vmin;
+      background: gray;
+      top: 50%;
+      left: 50%;
+      transform-origin: center bottom;
+    }
+
+    .graduations .heure {
+      height: 8%;
+      background: black;
+    }
+
+    .aiguille {
+      position: absolute;
+      width: 1%;
+      background: black;
+      top: 50%;
+      left: 50%;
+      transform-origin: center bottom;
+      transform: rotate(0deg);
+      border-radius: 1vmin;
+    }
+
+    .aiguille.heures {
+      height: 25%;
+      background: #333;
+      z-index: 3;
+    }
+
+    .aiguille.minutes {
+      height: 35%;
+      background: #555;
+      z-index: 2;
+    }
+
+    .aiguille.secondes {
+      height: 40%;
+      background: red;
+      z-index: 1;
+    }
+
+    .centre {
+      position: absolute;
+      width: 2%;
+      height: 2%;
+      background: black;
+      border-radius: 50%;
+      top: 49%;
+      left: 49%;
+      z-index: 4;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="cadran">
+    <div class="chiffres"></div>
+    <div class="graduations"></div>
+    <div class="aiguille heures"></div>
+    <div class="aiguille minutes"></div>
+    <div class="aiguille secondes"></div>
+    <div class="centre"></div>
+  </div>
+
+  <script>
+    const chiffres = document.querySelector(".chiffres");
+    const graduations = document.querySelector(".graduations");
+
+    // Placer les chiffres
+    for (let i = 1; i <= 12; i++) {
+      const angle = (i - 3) * 30 * Math.PI / 180;
+      const x = 50 + 43 * Math.cos(angle);
+      const y = 50 + 43 * Math.sin(angle);
+      const el = document.createElement("div");
+      el.textContent = i;
+      el.style.left = `${x}%`;
+      el.style.top = `${y}%`;
+      chiffres.appendChild(el);
+    }
+
+    // Créer les graduations
+    for (let i = 0; i < 60; i++) {
+      const grad = document.createElement("div");
+      grad.style.transform = `rotate(${i * 6}deg) translateY(-50%)`;
+      if (i % 5 === 0) grad.classList.add("heure");
+      graduations.appendChild(grad);
+    }
+
+    // Animation des aiguilles
+    const aiguilles = {
+      heures: document.querySelector(".aiguille.heures"),
+      minutes: document.querySelector(".aiguille.minutes"),
+      secondes: document.querySelector(".aiguille.secondes")
+    };
+
+    function mettreAJourHorloge() {
+      const maintenant = new Date();
+      const h = maintenant.getHours();
+      const m = maintenant.getMinutes();
+      const s = maintenant.getSeconds();
+
+      const angleH = (h % 12 + m / 60) * 30;
+      const angleM = (m + s / 60) * 6;
+      const angleS = s * 6;
+
+      aiguilles.heures.style.transform = `rotate(${angleH}deg)`;
+      aiguilles.minutes.style.transform = `rotate(${angleM}deg)`;
+      aiguilles.secondes.style.transform = `rotate(${angleS}deg)`;
+    }
+
+    setInterval(mettreAJourHorloge, 1000);
+    mettreAJourHorloge(); // initialisation
+  </script>
+
+</body>
+</html>

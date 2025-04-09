@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../assets/jquery-3.7.1.min.js"></script>
+    <script src="jquery-clock-timepicker.min.js"></script>
+</head>
+<body>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, dignissimos, beatae sint consequatur quidem laudantium aut esse culpa voluptate fuga iure odio recusandae voluptatum animi in quam odit, ratione ab!</p>
+    <p>par</p>
+    <p>par</p>
+    <p>par</p>
+    <p>par</p>
+    <button>hide/show</button>
+    <input type="time" name="" id="time">
+    <script>
+        $(document).ready(function(){
+
+            $("button").click(function(){
+                    $("p").each(function(){$(this).css("color","red")
+                    .slideUp(2000)
+                    .slideDown(2000)
+                    .attr("title","Para")
+
+            })
+            $("button").mouseover(()=>{
+
+            })
+        })
+        $("#time").clockTimePicker({
+	duration: true,
+	durationNegative: true,
+	precision: 5,
+	i18n: {
+		cancelButton: 'Abbrechen'
+	},
+	onAdjust: function(newVal, oldVal) {
+		//...
+	}
+});
+        })
+        
+    
+        
+    </script>
+</body>
+</html>

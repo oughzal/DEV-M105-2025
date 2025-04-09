@@ -44,6 +44,15 @@
     <input type="range" name="fontSize" min="8" max="100" value="12">
     <input type="range" name="width" min="0" max="100" value="12">
     <input type="range" name="height" min="0" max="100" value="12">
+    <select name="diplome" multiple>
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+    </select>
   
     </form>
 
@@ -80,6 +89,10 @@
             target.style.height = f.height.value + "%"
         }
         
+        f.diplome.onchange = function(){
+            let selectedOptions = Array.from(f.diplome.selectedOptions).map(option => option.value);
+            console.log(selectedOptions)
+        }
 
     </script>
 </body>
