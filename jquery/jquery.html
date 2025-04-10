@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery</title>
+    
+    <script src="../assets/jquery-3.7.1.min.js"></script>
+
+</head>
+<body>
+   <p id="title"></p>
+   <input type="text" name="in" id="in">
+   <button id="btn">cliquer ici</button>
+   <button id="btn2">supprimer event</button>
+   <button id="btn3">fade</button>
+   <button id="btn4">slide</button>
+   <button id="btn5">animate</button>
+   <button id="btn6">stop</button>
+   
+   <a href="https://www.google.com">google</a>
+
+   <div id="d1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Minus fugit placeat tempora sed quaerat earum quam ut magni, nisi, enim veniam, inventore sit maxime reiciendis distinctio magnam. Facere, perspiciatis corporis!</div>
+
+   <ul id="ul">
+    <li>item 1</li>
+    <li>item 2</li>
+    <li>item 3</li>
+    <li>item 4</li>
+    <li>item 5</li>
+    <li>item 6</li>
+    <li>item 7</li>
+    <li>item 8</li>
+    <li>item 9</li>
+    <li>item 10</li>
+   </ul>
+
+
+   <script>
+    $("#btn").click(function(){
+       
+        $("#ul").children().first().css("color","red")
+        $("#ul").children().last().css("color","green")
+        $("#ul").children().eq(4).css("color","blue")
+    })
+    $(document).on("mouseover",function(e){
+        console.log(e.clientX)
+    })
+    $("#btn2").click(()=>{
+        $(document).off("mouseover")
+    })
+    $("a").click((e)=>{
+        e.preventDefault()
+        // document.location ="https://www.ofppt.ma"
+    })
+    $("#btn3").click(function(){
+       $("#ul").children().eq(2).fadeOut(3000).fadeIn(3000)
+    }) 
+    $("#btn4").click(function(){
+       $("#ul").children().eq(6).slideToggle(3000)
+    })
+    
+    $("#btn5").click(()=>{
+        $("#d1").animate({
+            width : "300px",
+            height : "300px",
+            radius : "50%"
+        },3000).animate({
+            width : "100%",
+            height : "auto",
+            radius : "0"
+        },3000)
+    })
+
+    $("#btn6").click(function(){
+        $("#d1").stop().stop()
+    })
+    
+
+   </script>
+</body>
+</html>
