@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horloge</title>
+<style>
+    @font-face {
+        font-family: digital;
+        src: url(../assets/fonts/DS-DIGIB.TTF);
+    }
+    body{
+        display: flex;
+        width: 90dvw;
+        height: 90dvh;
+        justify-content: center;
+        align-items: center;
+        margin: auto;
+    }
+    #clock{
+        background-color: rgb(41, 1, 1);
+        width: 600px;
+        height: 600px;
+        position: relative;
+        border-radius: 50%;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 10px;
+    }
+    .number{
+        position: absolute;
+        font-size: 3rem;
+        color: rgb(155, 248, 129);
+        font-family: digital;
+        font-weight: bold;
+    }
+    .point{
+        position: absolute;
+        background-color: rgb(155, 248, 129);
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+    }
+    .pointBold{
+        width: 15px;
+        height: 15px;
+    }
+    #center{
+        position: absolute;
+        background-color: rgb(155, 248, 129);
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        top: 50%;
+        left: 50%;
+    }
+    #hour, #minute, #second{
+        position: absolute;
+        background-color: rgb(155, 248, 129);
+        width: 14px;
+        height: 30%;
+        border-radius: 50%;
+        transform-origin: bottom center;
+        position: absolute;
+        bottom: 50%;
+        left: 49%;
+    }
+    #hour{
+        width: 18px;
+        height: 30%;
+        transform: rotate(90deg);
+    }
+    #minute{
+        width: 12px;
+        height: 35%;
+        transform: rotate(180deg);
+    }
+    #second{
+        width: 8px;
+        height: 45%;
+    }
+    .light{
+        color: white;
+    }
+</style>
+    
+</head>
+<body>
+    <div id="clock">
+        <div id="hour"></div>
+        <div id="minute"></div>
+        <div id="second"></div>
+        <div id="center"></div>
+    </div>
+
+    <script>
+        const clock = document.getElementById("clock")
+        function drawNumbers(){
+            for(i=1; i<=12; i++){
+                const number = document.createElement("div")
+                number.classList.add("number")
+                number.innerText = i
+                number.id = `number${i}`
+                const angle = ((i * 30)-90) * Math.PI / 180
+                const x = Math.cos(angle) * 250
+                const y = Math.sin(angle) * 250
+                number.style.transform = `translate(${x}px, ${y}px)`
+                clock.appendChild(number)
+            }
+            for(i=1; i<=60; i++){
+                const point = document.createElement("div")
+                point.classList.add("point")
+                point.id = `point${i}`
+                if(i % 5 == 0){
+                    point.classList.add("pointBold")
+                }
+                const angle = i * 6 * (Math.PI / 180)
+                const x = Math.cos(angle) * 290
+                const y = Math.sin(angle) * 290
+                point.style.transform = `translate(${x}px, ${y}px)`
+                clock.appendChild(point)
+            }
+        }
+ 
+        function updateClock(){
+            const date = new Date()
+            const hours = date.getHours() % 12
+            const minutes = date.getMinutes()
+            const seconds = date.getSeconds()
+            const hourAngle = (hours * 30) + (minutes /60) 
+            const minuteAngle = (minutes * 6) + (seconds /60)
+            const secondAngle = (seconds * 6)
+            document.getElementById("hour").style.transform = `rotate(${hourAngle}deg)`
+            document.getElementById("minute").style.transform = `rotate(${minuteAngle}deg)`
+            document.getElementById("second").style.transform = `rotate(${secondAngle}deg)`
+        }
+        drawNumbers()
+        setInterval(updateClock, 1000)
+    </script>
+</body>
+</html>

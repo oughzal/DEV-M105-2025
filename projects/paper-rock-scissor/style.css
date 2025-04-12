@@ -1,0 +1,55 @@
+body{
+    display: flex;
+    width: 90%;
+    height: 90dvh;
+    justify-content: center;
+    align-items: center;
+    background-color: #f0f0f0;
+    margin: auto;
+}
+#container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    background-color: white;
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+#scores,#hands,#choices{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 60px;
+}
+#choices{
+    justify-content: center;
+    font-size: 100px;
+    font-weight: bold;
+    cursor: pointer;
+}
+#scores{
+    justify-content: space-between;
+}
+#computerScore,#userScore{
+    font-size: 30px;
+    font-weight: bold;
+    text-align: center; 
+    color : blue;
+}
+#computerScore{
+   color: red; 
+}
+#ComputerHand,#userHand{
+    font-size: 200px;
+    font-weight: bold;
+}
+#ComputerHand{
+    transform: scale(-1,1) rotate(-90deg);
+}
+#userHand,.choice{
+    transform: scale(-1,-1) rotate(90deg);
+}
