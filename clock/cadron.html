@@ -11,14 +11,14 @@
     }
     body{
         display: flex;
-        width: 90dvw;
-        height: 90dvh;
+        width: 100dvw;
+        height: 100dvh;
         justify-content: center;
         align-items: center;
         margin: auto;
     }
     #clock{
-        background-color: rgb(41, 1, 1);
+        background-color: black;
         width: 600px;
         height: 600px;
         position: relative;
@@ -28,21 +28,25 @@
         justify-content: center;
         align-items: center;
         padding: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        border: 10px solid rgb(2, 85, 8);
     }
     .number{
         position: absolute;
         font-size: 3rem;
-        color: rgb(155, 248, 129);
+        color: white;
         font-family: digital;
         font-weight: bold;
+        
     }
     .point{
         position: absolute;
-        background-color: rgb(155, 248, 129);
+        background-color: white;
         width: 5px;
         height: 5px;
         border-radius: 50%;
         transform: translate(-50%, -50%);
+
     }
     .pointBold{
         width: 15px;
@@ -50,41 +54,59 @@
     }
     #center{
         position: absolute;
-        background-color: rgb(155, 248, 129);
+        background-color: rgb(8, 206, 173);
         width: 30px;
         height: 30px;
         border-radius: 50%;
         transform: translate(-50%, -50%);
         top: 50%;
         left: 50%;
+        z-index: 3;
     }
     #hour, #minute, #second{
         position: absolute;
-        background-color: rgb(155, 248, 129);
-        width: 14px;
-        height: 30%;
+        background: linear-gradient(to bottom, white, gray);
         border-radius: 50%;
         transform-origin: bottom center;
         position: absolute;
         bottom: 50%;
         left: 49%;
+        z-index: 2;
+
     }
     #hour{
-        width: 18px;
+        width: 10px;
         height: 30%;
         transform: rotate(90deg);
     }
     #minute{
-        width: 12px;
+        width: 6px;
         height: 35%;
         transform: rotate(180deg);
     }
     #second{
-        width: 8px;
+        width: 4px;
         height: 45%;
     }
-    .light{
+    #digitalClock{
+        position: absolute;
+        font-size: 3rem;
         color: white;
+        font-family: digital;
+        font-weight: bold;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+    #date{
+        position: absolute;
+        font-size: 3rem;
+        color: white;
+        font-family: digital;
+        font-weight: bold;
+        bottom: 20%;
+        left: 50%;
+        transform: translateX(-50%);
     }
 </style>
     
@@ -95,8 +117,9 @@
         <div id="minute"></div>
         <div id="second"></div>
         <div id="center"></div>
+        <div id="digitalClock">00:00:00</div>
+        <div id="date">00-00-0000</div>
     </div>
-
     <script>
         const clock = document.getElementById("clock")
         function drawNumbers(){
@@ -137,6 +160,8 @@
             document.getElementById("hour").style.transform = `rotate(${hourAngle}deg)`
             document.getElementById("minute").style.transform = `rotate(${minuteAngle}deg)`
             document.getElementById("second").style.transform = `rotate(${secondAngle}deg)`
+            document.getElementById("digitalClock").innerText = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`
+            document.getElementById("date").innerText = `${String(date.getDate()).padStart(2, '0')}/${String(date.getMonth() + 1).padStart(2, '0')}\n${date.getFullYear()}`
         }
         drawNumbers()
         setInterval(updateClock, 1000)

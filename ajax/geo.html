@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+</head>
+<body>
+   <label for="geolocation">Geolocation</label>
+   <input type="text" name="geo" id="geo" value="35.74838007050722, -5.86793120656396"> <br>
+   <button id="getInfo">get info</button>
+   <div id="infos"></div>
+
+   <script>
+    xhttp = new XMLHttpRequest()
+    xhttp.onreadystatechange =function(){
+
+        if(this.readyState == 4 && this.status == 200){
+            let data = JSON.parse(this.responseText)
+            html ="city :" + data.city +"<br>"
+            html +="country :" + data.countryName +"<br>"
+            html +="continent :" + data.continent +"<br>"
+            document.getElementById("infos").innerHTML = html
+            
+        }
+    }
+    document.getElementById("getInfo").onclick = function(){
+        const geo = document.getElementById("geo").value.split(", ")
+        console.log(geo)
+        lat = geo[0]
+        lon = geo[1]
+        url = `https://api.bigdatacloud.net/data/reverse-geocode-client?latitude=${lat}&longitude=${lon}&localityLanguage=ar` 
+        xhttp.open("GET",url,true)
+        xhttp.send()
+    }
+   </script>
+
+</body>
+</html>

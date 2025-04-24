@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="#" name="f1" id="f1">
+        <select name="cours" id="cours" multiple size="6">
+            <option value="1">Math</option>
+            <option value="2">Physique</option>
+            <option value="3">Chimie</option>
+            <option value="4">Biologie</option>
+            <option value="5">Informatique</option>
+            <option value="6">Anglais</option>
+        </select>
+        <p id="nbSelected">0</p>
+        <input class="modules[]" type="checkbox" name="modules"value="1" id="m1">Module 1<br>
+        <input  class="modules[]"  type="checkbox" name="modules"value="2" id="m2">Module 2<br>
+        <input  class="modules[]" type="checkbox" name="modules"value="3" id="m3">Module 3<br>
+        <input  class="modules[]"  type="checkbox" name="modules[]"value="4" id="m4">Module 4<br>
+        <button id="btn1">vérifier</button>
+    </form>
+    <script>
+        const select = document.getElementById('cours');
+        const btn1 = document.getElementById('btn1');
+        const nbSelected = document.getElementById('nbSelected');
+        const form = document.getElementById('f1');
+        form.cours.onchange = function(){
+            nbSelected.textContent = form.cours.selectedOptions.length;
+        }
+
+        btn1.onclick = function(){
+            // const selected = document .querySelectorAll('input[name="modules"]:checked');
+            // alert('Vous avez sélectionné ' + selected.length + ' modules');
+            // const m1 = document.getElementById('m1');
+            // const m2 = document.getElementById('m2');
+            // const m3 = document.getElementById('m3');
+            // const m4 = document.getElementById('m4');
+            // nb = 0;
+            // if(m1.checked){
+            //     nb++;
+            // }
+            // if(m2.checked){
+            //     nb++;
+            // }
+            // if(m3.checked){
+            //     nb++;
+            // }
+            // if(m4.checked){
+            //     nb++;
+            // }
+            // alert('Vous avez sélectionné ' + nb + ' modules');
+
+            const selected = document.querySelectorAll('.modules:checked');
+            let selectedValues = [];
+            for(checkbox of selected){ // for checkbox in selected
+                selectedValues.push(checkbox.value);
+            };
+            alert('Vous avez sélectionné ' + selectedValues.length + ' modules: ' + selectedValues.join(', '));
+            alert('Vous avez sélectionné ' + selected.length + ' modules');
+        }
+        
+    </script>
+</body>
+</html>

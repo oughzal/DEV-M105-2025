@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../assets/jquery-3.7.1.min.js"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="target"></div>
+    <button id="charger">Charger</button>
+    <script>
+        // xhr = new XMLHttpRequest()
+        // xhr.open("GET","reponse.txt",true)
+        // xhr.onreadystatechange = function(){
+        //     if(this.readyState==4 && this.status ==200){
+        //         
+        //     }
+        // }
+        // document.getElementById("charger").onclick = function(){
+        //     xhr.send()
+        // }
+    </script>
+
+    <script>
+       
+        $("#charger").click(function(){
+           
+        $("#target").load("reponse.txt")
+        })
+    </script>
+</body>
+</html>
